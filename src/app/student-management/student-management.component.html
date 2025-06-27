@@ -1,0 +1,103 @@
+<div class="student-layout">
+  <app-side-bar></app-side-bar>
+  <div class="content-wrapper">
+    <app-header></app-header>
+    <div class="student-management-content">
+      <section class="management-section">
+        <h2> Student Management</h2>
+        <div class="management-controls">
+          <button class="add-user-btn" (click)="openStudentModal()">
+            Add New Student
+          </button>
+          <div class="search-box">
+            <app-icon name="search" [size]="16" color="#888"></app-icon>
+            <input type="text" placeholder="Search students..." [(ngModel)]="studentSearchQuery" (ngModelChange)="filterStudents()">
+          </div>
+        </div>
+        <div class="users-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Department</th>
+                <th>Last Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of filteredStudents">
+                <td>{{student.name}}</td>
+                <td>
+                  <span class="status-badge" [class]="student.status">
+                    {{student.status}}
+                  </span>
+                </td>
+                <td>{{student.department}}</td>
+                <td>{{student.lastActive | date:'short'}} </td>
+                <td class="actions">
+                  <button (click)="editStudent(student)">Edit</button>
+                  <button (click)="deleteStudent(student)" class="delete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Edit Student Modal -->
+        <div class="modal-backdrop" *ngIf="editingStudent">
+          <div class="modal">
+            <h3>Edit Student</h3>
+            <form #editStudentForm="ngForm" (ngSubmit)="saveStudentEdit()">
+              <label>Name:</label>
+              <input type="text" [(ngModel)]="editStudentData.name" name="editName" required #editName="ngModel" />
+              <div class="validation-error" *ngIf="(editName.invalid && (editName.touched || editStudentFormSubmitted))">Name is required.</div>
+              <label>Status:</label>
+              <select [(ngModel)]="editStudentData.status" name="editStatus" required #editStatus="ngModel">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <div class="validation-error" *ngIf="(editStatus.invalid && (editStatus.touched || editStudentFormSubmitted))">Status is required.</div>
+              <label>Department:</label>
+              <select [(ngModel)]="editStudentData.department" name="editDepartment" required #editDepartment="ngModel">
+                <option value="" disabled>Select department</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+              </select>
+              <div class="validation-error" *ngIf="(editDepartment.invalid && (editDepartment.touched || editStudentFormSubmitted))">Department is required.</div>
+              <div class="modal-actions">
+                <button type="submit" [disabled]="editStudentForm.invalid" (click)="editStudentFormSubmitted = true">Save</button>
+                <button type="button" (click)="cancelStudentEdit()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Add Student Modal -->
+        <div class="modal-backdrop" *ngIf="addingStudent">
+          <div class="modal">
+            <h3>Add New Student</h3>
+            <form #addStudentForm="ngForm" (ngSubmit)="saveNewStudent()">
+              <label>Name:</label>
+              <input type="text" [(ngModel)]="newStudentData.name" name="addName" required #addName="ngModel" />
+              <div class="validation-error" *ngIf="(addName.invalid && (addName.touched || addStudentFormSubmitted))">Name is required.</div>
+              <label>Status:</label>
+              <select [(ngModel)]="newStudentData.status" name="addStatus" required #addStatus="ngModel">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <div class="validation-error" *ngIf="(addStatus.invalid && (addStatus.touched || addStudentFormSubmitted))">Status is required.</div>
+              <label>Department:</label>
+              <select [(ngModel)]="newStudentData.department" name="addDepartment" required #addDepartment="ngModel">
+                <option value="" disabled>Select department</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+              </select>
+              <div class="validation-error" *ngIf="(addDepartment.invalid && (addDepartment.touched || addStudentFormSubmitted))">Department is required.</div>
+              <div class="modal-actions">
+                <button type="submit" [disabled]="addStudentForm.invalid" (click)="addStudentFormSubmitted = true">Add</button>
+                <button type="button" (click)="cancelAddStudent()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

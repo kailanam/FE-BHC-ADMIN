@@ -1,0 +1,121 @@
+<div class="faculty-layout">
+  <app-side-bar></app-side-bar>
+  <div class="content-wrapper">
+    <app-header></app-header>
+    <div class="faculty-management-content">
+      <section class="management-section">
+        <h2> Faculty Management</h2>
+        <div class="management-controls">
+          <button class="add-user-btn" (click)="openUserModal()">
+            Add New User
+          </button>
+          <div class="search-box">
+            <app-icon name="search" [size]="16" color="#888"></app-icon>
+            <input type="text" placeholder="Search users..." [(ngModel)]="userSearchQuery" (ngModelChange)="filterUsers()">
+          </div>
+        </div>
+        <div class="users-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Department</th>
+                <th>Last Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of filteredUsers">
+                <td>{{user.name}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                  <span class="status-badge" [class]="user.status">
+                    {{user.status}}
+                  </span>
+                </td>
+                <td>{{user.department}}</td>
+                <td>{{user.lastActive | date:'short'}} </td>
+                <td class="actions">
+                  <button (click)="editUser(user)">Edit</button>
+                  <button (click)="deleteUser(user)" class="delete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Edit User Modal -->
+        <div class="modal-backdrop" *ngIf="editingUser">
+          <div class="modal">
+            <h3>Edit User</h3>
+            <form #editUserForm="ngForm" (ngSubmit)="saveUserEdit()">
+              <label>Name:</label>
+              <input type="text" [(ngModel)]="editUserData.name" name="editName" required #editName="ngModel" />
+              <div class="validation-error" *ngIf="editName.invalid && editName.touched">Name is required.</div>
+              <label>Role:</label>
+              <select [(ngModel)]="editUserData.role" name="editRole" required #editRole="ngModel">
+                <option value="" disabled>Select role</option>
+                <option value="admin">Admin</option>
+                <option value="faculty">Faculty</option>
+                <option value="registrar">Registrar</option>
+              </select>
+              <div class="validation-error" *ngIf="editRole.invalid && editRole.touched">Role is required.</div>
+              <label>Status:</label>
+              <select [(ngModel)]="editUserData.status" name="editStatus" required #editStatus="ngModel">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <div class="validation-error" *ngIf="editStatus.invalid && editStatus.touched">Status is required.</div>
+              <label>Department:</label>
+              <select [(ngModel)]="editUserData.department" name="editDepartment" required #editDepartment="ngModel">
+                <option value="" disabled>Select department</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+              </select>
+              <div class="validation-error" *ngIf="editDepartment.invalid && editDepartment.touched">Department is required.</div>
+              <div class="modal-actions">
+                <button type="submit" [disabled]="editUserForm.invalid">Save</button>
+                <button type="button" (click)="cancelUserEdit()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Add User Modal -->
+        <div class="modal-backdrop" *ngIf="addingUser">
+          <div class="modal">
+            <h3>Add New User</h3>
+            <form #addUserForm="ngForm" (ngSubmit)="saveNewUser()">
+              <label>Name:</label>
+              <input type="text" [(ngModel)]="newUserData.name" name="addName" required #addName="ngModel" />
+              <div class="validation-error" *ngIf="(addName.invalid && (addName.touched || addUserFormSubmitted))">Name is required.</div>
+              <label>Role:</label>
+              <select [(ngModel)]="newUserData.role" name="addRole" required #addRole="ngModel">
+                <option value="" disabled>Select role</option>
+                <option value="admin">Admin</option>
+                <option value="faculty">Faculty</option>
+                <option value="registrar">Registrar</option>
+              </select>
+              <div class="validation-error" *ngIf="(addRole.invalid && (addRole.touched || addUserFormSubmitted))">Role is required.</div>
+              <label>Status:</label>
+              <select [(ngModel)]="newUserData.status" name="addStatus" required #addStatus="ngModel">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <div class="validation-error" *ngIf="(addStatus.invalid && (addStatus.touched || addUserFormSubmitted))">Status is required.</div>
+              <label>Department:</label>
+              <select [(ngModel)]="newUserData.department" name="addDepartment" required #addDepartment="ngModel">
+                <option value="" disabled>Select department</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+              </select>
+              <div class="validation-error" *ngIf="(addDepartment.invalid && (addDepartment.touched || addUserFormSubmitted))">Department is required.</div>
+              <div class="modal-actions">
+                <button type="submit" [disabled]="addUserForm.invalid" (click)="addUserFormSubmitted = true">Add</button>
+                <button type="button" (click)="cancelAddUser()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

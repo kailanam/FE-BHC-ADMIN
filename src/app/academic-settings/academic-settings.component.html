@@ -1,0 +1,47 @@
+<section class="settings-section">
+  <div class="settings-grid">
+    <div class="settings-card">
+      <h3>Academic Year Setup</h3>
+      <div class="active-academic-period-label">
+        {{ activeAcademicPeriodLabel }}
+      </div>
+      <div class="semester-buttons">
+        <button *ngFor="let sem of semesters"
+                [class.selected]="stagedSemester === sem"
+                (click)="stagedSemester = sem"
+                [disabled]="!stagedSchoolYear">
+          {{ sem }} Semester
+        </button>
+      </div>
+      <div class="academic-year-list">
+        <div *ngFor="let year of academicYears" 
+             class="academic-year-item" 
+             [class.active]="year === stagedSchoolYear"
+             [class.selected]="year === stagedSchoolYear"
+             (click)="selectAcademicYear(year)"
+             tabindex="0">
+          <span>{{ year }}</span>
+          <span *ngIf="year === stagedSchoolYear" class="active-label">Selected</span>
+        </div>
+      </div>
+      <div class="setting-controls">
+        <button (click)="updateAcademicPeriod()" [disabled]="!stagedSchoolYear">Update</button>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h3>Data Management</h3>
+      <div class="setting-controls">
+        <button class="backup-btn" (click)="backupData()">
+          Backup Data
+        </button>
+        <button class="restore-btn" (click)="restoreData()">
+          Restore Data
+        </button>
+        <button class="danger-btn" (click)="confirmDataReset()">
+          Reset Data
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

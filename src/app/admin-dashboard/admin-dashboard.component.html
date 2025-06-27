@@ -1,0 +1,248 @@
+<div class="admin-dashboard">
+  <app-side-bar></app-side-bar>
+  <div class="content-wrapper">
+    <app-header></app-header>
+    <div class="main-content">
+      <div class="dashboard-content" [ngSwitch]="currentSection">
+        <!-- Overview Section -->
+        <div *ngSwitchCase="'overview'" class="section-content">
+          <section class="analytics-section">
+            <h2>Analytics</h2>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon student-icon">
+                  <app-icon name="user-pen" [size]="24" color="#AE1039"></app-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>Total Students</h3>
+                  <p class="stat-number">{{totalStudents}}</p>
+                  <p class="stat-change" [class.positive]="studentGrowth > 0">
+                    {{studentGrowth}}% from last month
+                  </p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon faculty-icon">
+                  <app-icon name="personnel" [size]="24" color="#4CAF50"></app-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>Faculty Members</h3>
+                  <p class="stat-number">{{totalFaculty}}</p>
+                  <p class="stat-change" [class.positive]="facultyGrowth > 0">
+                    {{facultyGrowth}}% from last month
+                  </p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon active-icon">
+                  <app-icon name="user-pen" [size]="24" color="#FF9800"></app-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>Active Users Today</h3>
+                  <p class="stat-number">{{activeUsersToday}}</p>
+                  <p class="stat-change">{{activeUsersWeek}} this week</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="analytics-section">
+              <!-- Analytics Tabs -->
+              <div class="analytics-tabs">
+                <button *ngFor="let tab of analyticsTabOptions" 
+                        [class.active]="activeAnalyticsTab === tab.id"
+                        (click)="setActiveAnalyticsTab(tab.id)"
+                        class="tab-button">
+                  <app-icon [name]="tab.icon" [size]="20" [color]="activeAnalyticsTab === tab.id ? '#AE1039' : '#666'"></app-icon>
+                  {{tab.label}}
+                </button>
+              </div>
+
+              <!-- Analytics Content -->
+              <div class="analytics-content" [ngSwitch]="activeAnalyticsTab">
+                <!-- Enrollment Tab -->
+                <div *ngSwitchCase="'enrollment'" class="tab-content">
+                  <div class="filters-bar">
+                    <div class="filter-group">
+                      <label for="semesterFilter">Semester:</label>
+                      <select id="semesterFilter" (change)="onSemesterChange($event)" [(ngModel)]="selectedSemester">
+                        <option *ngFor="let semester of availableSemesters" [value]="semester">
+                          {{semester}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="filter-group">
+                      <label for="yearFilter">Year:</label>
+                      <select id="yearFilter" (change)="onYearChange($event)" [(ngModel)]="selectedYear">
+                        <option *ngFor="let year of availableYears" [value]="year">
+                          {{year}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <ngx-charts-line-chart
+                      [view]="view"
+                      [results]="enrollmentChartData"
+                      [gradient]="gradient"
+                      [xAxis]="showXAxis"
+                      [yAxis]="showYAxis"
+                      [showXAxisLabel]="showXAxisLabel"
+                      [showYAxisLabel]="showYAxisLabel"
+                      [xAxisLabel]="'Period'"
+                      [yAxisLabel]="'Number of Students'"
+                      [timeline]="timeline"
+                      [scheme]="colorScheme"
+                      (select)="onSelect($event)">
+                    </ngx-charts-line-chart>
+                  </div>
+                </div>
+
+                <!-- Programs Tab -->
+                <div *ngSwitchCase="'programs'" class="tab-content">
+                  <div class="filters-bar">
+                    <div class="filter-group">
+                      <label for="programSort">Sort by:</label>
+                      <select id="programSort" (change)="onProgramSortChange($event)" [(ngModel)]="programSortBy">
+                        <option value="count">Student Count</option>
+                        <option value="name">Program Name</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <ngx-charts-bar-vertical
+                      [view]="view"
+                      [results]="programChartData"
+                      [gradient]="gradient"
+                      [xAxis]="showXAxis"
+                      [yAxis]="showYAxis"
+                      [showXAxisLabel]="showXAxisLabel"
+                      [showYAxisLabel]="showYAxisLabel"
+                      [xAxisLabel]="'Program'"
+                      [yAxisLabel]="'Student Count'"
+                      [scheme]="colorScheme"
+                      (select)="onSelect($event)">
+                    </ngx-charts-bar-vertical>
+                  </div>
+                </div>
+
+                <!-- Demographics Tab -->
+                <div *ngSwitchCase="'demographics'" class="tab-content">
+                  <div class="chart-container">
+                    <ngx-charts-pie-chart
+                      [view]="view"
+                      [results]="genderChartData"
+                      [gradient]="gradient"
+                      [legend]="showLegend"
+                      [scheme]="colorScheme"
+                      (select)="onSelect($event)">
+                    </ngx-charts-pie-chart>
+                  </div>
+                </div>
+
+                <!-- Academic Performance Tab -->
+                <div *ngSwitchCase="'academic'" class="tab-content">
+                  <div class="chart-container">
+                    <ngx-charts-bar-vertical-2d
+                      [view]="view"
+                      [results]="academicChartData"
+                      [gradient]="gradient"
+                      [xAxis]="showXAxis"
+                      [yAxis]="showYAxis"
+                      [showXAxisLabel]="showXAxisLabel"
+                      [showYAxisLabel]="showYAxisLabel"
+                      [xAxisLabel]="'Programs'"
+                      [yAxisLabel]="'Percentage'"
+                      [scheme]="colorScheme"
+                      (select)="onSelect($event)">
+                    </ngx-charts-bar-vertical-2d>
+                  </div>
+                </div>
+
+                <!-- Attendance Tab -->
+                <div *ngSwitchCase="'attendance'" class="tab-content">
+                  <div class="chart-container">
+                    <ngx-charts-line-chart
+                      [view]="view"
+                      [results]="attendanceChartData"
+                      [gradient]="gradient"
+                      [xAxis]="showXAxis"
+                      [yAxis]="showYAxis"
+                      [showXAxisLabel]="showXAxisLabel"
+                      [showYAxisLabel]="showYAxisLabel"
+                      [xAxisLabel]="'Month'"
+                      [yAxisLabel]="'Attendance Rate (%)'"
+                      [timeline]="timeline"
+                      [scheme]="colorScheme"
+                      (select)="onSelect($event)">
+                    </ngx-charts-line-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Recent Activity Section -->
+          <section class="activity-section">
+            <h2>Recent Activity</h2>
+            <div class="activity-list">
+              <div class="activity-card" *ngFor="let activity of recentActivities">
+                <div class="activity-icon">
+                  <app-icon [name]="activity.icon" [size]="20" [color]="activity.iconColor"></app-icon>
+                </div>
+                <div class="activity-details">
+                  <p class="activity-user">{{activity.user}}</p>
+                  <p class="activity-action">{{activity.action}}</p>
+                  <p class="activity-time">{{activity.timestamp | date:'short'}}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- Settings Section -->
+        <app-academic-settings *ngSwitchCase="'settings'"></app-academic-settings>
+
+        <!-- Audit Trail Section -->
+        <div *ngSwitchCase="'audit'" class="section-content">
+          <section class="audit-section">
+            <h2>Audit Trail</h2>
+            <div class="audit-filters">
+              <input type="date" [(ngModel)]="auditStartDate">
+              <input type="date" [(ngModel)]="auditEndDate">
+              <select [(ngModel)]="auditActionFilter">
+                <option value="">All Actions</option>
+                <option value="create">Create</option>
+                <option value="update">Update</option>
+                <option value="delete">Delete</option>
+              </select>
+              <button (click)="filterAuditLogs()">Filter</button>
+            </div>
+            <div class="audit-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let log of filteredAuditLogs">
+                    <td>{{log.timestamp | date:'medium'}}</td>
+                    <td>{{log.user}}</td>
+                    <td>{{log.action}}</td>
+                    <td>{{log.details}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

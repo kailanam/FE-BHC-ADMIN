@@ -1,0 +1,124 @@
+<div class="dashboard-container">
+  <!-- Desktop Sidebar -->
+  <aside class="sidebar" [class.open]="sidebarOpen" *ngIf="!isMobile()">
+    <div class="sidebar-profile">
+      <div class="sidebar-avatar">
+        <img src="assets/BHE-LOGO.png" alt="BHC Logo" class="school-logo" />
+      </div>
+      <div class="sidebar-name">BATAAN HEROES COLLEGE</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <a class="sidebar-link" (click)="toggleDashboardMenu()">
+          <div class="nav-item">
+            <app-icon name="dashboard" [size]="20" color="#FFFFFF"></app-icon>
+            <span>Dashboard</span>
+            <app-icon [name]="'arrow-left'" class="submenu-arrow" [size]="16" [style.transform]="showDashboardMenu ? 'rotate(-90deg)' : ''" color="#FFFFFF"></app-icon>
+          </div>
+        </a>
+        <div class="submenu" [class.show]="showDashboardMenu">
+          <a class="sidebar-sublink" routerLink="/admin-dashboard/overview" (click)="closeSidebar()">
+            <app-icon name="dashboard" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Overview</span>
+          </a>
+          <a class="sidebar-sublink" routerLink="/admin-dashboard/settings" (click)="closeSidebar()">
+            <app-icon name="dashboard" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Academic Year Settings</span>
+          </a>
+          <a class="sidebar-sublink" routerLink="/admin-dashboard/audit" (click)="closeSidebar()">
+            <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Audit Trail</span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="sidebar-link" (click)="toggleFacultyMenu()">
+          <div class="nav-item">
+            <app-icon name="personnel" [size]="20" color="#FFFFFF"></app-icon>
+            <span>Management</span>
+            <app-icon [name]="'arrow-left'" class="submenu-arrow" [size]="16" [style.transform]="showFacultyMenu ? 'rotate(-90deg)' : ''" color="#FFFFFF"></app-icon>
+          </div>
+        </a>
+        <div class="submenu" [class.show]="showFacultyMenu">
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('faculty')">
+            <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Faculty Management</span>
+          </a>
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('students')">
+            <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Student Management</span>
+          </a>
+        </div>
+      </div>
+      <a class="sidebar-link logout-link" (click)="logout()">
+        <div class="nav-item">
+          <app-icon name="log-out" [size]="20" color="#FFFFFF"></app-icon>
+          <span>Logout</span>
+        </div>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Mobile Sidebar Drawer -->
+  <aside class="sidebar-drawer" [class.open]="sidebarOpen" *ngIf="isMobile()">
+    <div class="sidebar-profile">
+      <div class="sidebar-avatar">
+        <img src="assets/BHE-LOGO.png" alt="BHC Logo" class="school-logo" />
+      </div>
+      <div class="sidebar-name">BATAAN HEROES COLLEGE</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <a class="sidebar-link" (click)="toggleDashboardMenu()">
+          <div class="nav-item">
+            <app-icon name="dashboard" [size]="20" color="#FFFFFF"></app-icon>
+            <span>Dashboard</span>
+            <app-icon [name]="'arrow-left'" class="submenu-arrow" [size]="16" [style.transform]="showDashboardMenu ? 'rotate(-90deg)' : ''" color="#FFFFFF"></app-icon>
+          </div>
+        </a>
+        <div class="submenu" [class.show]="showDashboardMenu">
+          <a class="sidebar-sublink" routerLink="/admin-dashboard/overview" (click)="closeSidebar()">
+            <app-icon name="dashboard" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Overview</span>
+          </a>
+          <a class="sidebar-sublink" routerLink="/admin-dashboard/settings" (click)="closeSidebar()">
+            <app-icon name="dashboard" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Academic Year Settings</span>
+          </a>
+          <a class="sidebar-sublink" routerLink="/admin-dashboard/audit" (click)="closeSidebar()">
+            <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Audit Trail</span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="sidebar-link" (click)="toggleFacultyMenu()">
+          <div class="nav-item">
+            <app-icon name="personnel" [size]="20" color="#FFFFFF"></app-icon>
+            <span>Management</span>
+            <app-icon [name]="'arrow-left'" class="submenu-arrow" [size]="16" [style.transform]="showFacultyMenu ? 'rotate(-90deg)' : ''" color="#FFFFFF"></app-icon>
+          </div>
+        </a>
+        <div class="submenu" [class.show]="showFacultyMenu">
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('faculty')">
+            <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Faculty Management</span>
+          </a>
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('students')">
+            <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Student Management</span>
+          </a>
+        </div>
+      </div>
+      <a class="sidebar-link logout-link" (click)="logout()">
+        <div class="nav-item">
+          <app-icon name="log-out" [size]="20" color="#FFFFFF"></app-icon>
+          <span>Logout</span>
+        </div>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" *ngIf="sidebarOpen && isMobile()" (click)="closeSidebar()"></div>
+</div>
