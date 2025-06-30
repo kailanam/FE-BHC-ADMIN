@@ -1,5 +1,5 @@
 // mock-users.ts
-import { User } from '../../admin-dashboard/admin-dashboard.component';
+import { User } from '../../pages/admin-dashboard/admin-dashboard.component';
 
 export const MOCK_USERS: User[] = [
   {

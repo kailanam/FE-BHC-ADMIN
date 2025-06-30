@@ -1,5 +1,5 @@
 // mock-audit-logs.ts
-import { AuditLog } from '../../admin-dashboard/admin-dashboard.component';
+import { AuditLog } from '../../pages/admin-dashboard/admin-dashboard.component';
 
 export const MOCK_AUDIT_LOGS: AuditLog[] = [
   {

@@ -1,16 +1,16 @@
 import { Component, OnInit, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
-import { SideBarComponent } from '../components/side-bar/side-bar.component';
-import { HeaderComponent } from '../components/header/header.component';
+import { SideBarComponent } from '../../components/side-bar/side-bar.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { IconComponent } from '../icon/icon.component';
+import { IconComponent } from '../..//components/icon/icon.component';
 import { FormsModule } from '@angular/forms';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { MOCK_USERS } from '../components/mockdata/mock-users';
-import { MOCK_AUDIT_LOGS } from '../components/mockdata/mock-audit-logs';
-import { MOCK_RECENT_ACTIVITIES } from '../components/mockdata/mock-recent-activities';
-import { AcademicSettingsComponent } from '../pages/academic-settings/academic-settings.component';
+import { MOCK_USERS } from '../../components/mockdata/mock-users';
+import { MOCK_AUDIT_LOGS } from '../../components/mockdata/mock-audit-logs';
+import { MOCK_RECENT_ACTIVITIES } from '../../components/mockdata/mock-recent-activities';
+import { AcademicSettingsComponent } from '../../pages/academic-settings/academic-settings.component';
 
 export interface User {
   id: string;

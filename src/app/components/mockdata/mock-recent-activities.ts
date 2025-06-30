@@ -1,5 +1,5 @@
 // mock-recent-activities.ts
-import { Activity } from '../../admin-dashboard/admin-dashboard.component';
+import { Activity } from '../../pages/admin-dashboard/admin-dashboard.component';
 
 export const MOCK_RECENT_ACTIVITIES: Activity[] = [
   {
