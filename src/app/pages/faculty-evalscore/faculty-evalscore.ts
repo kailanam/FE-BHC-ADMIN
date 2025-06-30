@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { SideBarComponent } from "../components/side-bar/side-bar.component";
-import { HeaderComponent } from '../components/header/header.component';
-import { MOCK_FACULTY, Faculty } from '../components/mockdata/mock-faculty';
+import { SideBarComponent } from "../../components/side-bar/side-bar.component";
+import { HeaderComponent } from '../../components/header/header.component';
+import { MOCK_FACULTY, Faculty } from '../../components/mockdata/mock-faculty';
 
 type EvalScoreItem = {
   question: string;

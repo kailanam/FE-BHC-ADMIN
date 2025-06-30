@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../icon/icon.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SidebarService } from '../side-bar/sidebar.service';
 

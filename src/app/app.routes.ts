@@ -4,7 +4,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { FacultyManagementComponent } from './faculty-management/faculty-management.component';
 import { StudentManagementComponent } from './student-management/student-management.component';
 import { ClasslistManagement } from './classlist-management/classlist-management';
-import { FacultyEvalscore} from './faculty-evalscore/faculty-evalscore';
+import { FacultyEvalscore} from './pages/faculty-evalscore/faculty-evalscore';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },

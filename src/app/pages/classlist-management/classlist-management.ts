@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SideBarComponent } from "../components/side-bar/side-bar.component";
-import { HeaderComponent } from "../components/header/header.component";
-import { MOCK_STUDENTS, MOCK_CLASSES, Student, ClassItem } from '../components/mockdata/mock-students';
+import { SideBarComponent } from "../../components/side-bar/side-bar.component";
+import { HeaderComponent } from "../../components/header/header.component";
+import { MOCK_STUDENTS, MOCK_CLASSES, Student, ClassItem } from '../../components/mockdata/mock-students';
 
 @Component({
   selector: 'app-classlist-management',
