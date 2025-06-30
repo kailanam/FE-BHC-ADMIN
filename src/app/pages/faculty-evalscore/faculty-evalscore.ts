@@ -62,9 +62,7 @@ export class FacultyEvalscore implements OnInit {
   evalScoresC = MOCK_EVAL_SCORES_C;
 
   ngOnInit(): void {
-    // Default to first faculty or none
     this.faculty = this.facultyList[0];
-    // Update current time every second
     setInterval(() => {
       this.currentDateTime = new Date();
     }, 1000);

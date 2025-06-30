@@ -53,7 +53,6 @@ export class ClasslistManagement {
   }
 
   updateClasses() {
-    // Implement update logic (e.g., save to backend or show a message)
     alert('Class list updated!');
   }
 }

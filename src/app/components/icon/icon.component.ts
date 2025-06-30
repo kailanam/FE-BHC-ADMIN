@@ -31,11 +31,9 @@ export class IconComponent {
 
   getFilterForColor(color?: string): string {
     if (!color) return 'none';
-    // Convert hex to RGB
     const r = parseInt(color.slice(1, 3), 16);
     const g = parseInt(color.slice(3, 5), 16);
     const b = parseInt(color.slice(5, 7), 16);
-    // Create a filter that will make the SVG the desired color
     return `brightness(0) saturate(100%) invert(${r/255}) sepia(${g/255}) saturate(${b/255}) hue-rotate(0deg)`;
   }
 }

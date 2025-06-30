@@ -125,8 +125,8 @@ export class AdminDashboardComponent implements OnInit {
   totalStudents = 1250;
   activeUsersToday = 450;
   activeUsersWeek = 1200;
-  studentGrowth = 15;  // 15% growth from last month
-  facultyGrowth = 5;   // 5% growth from last month
+  studentGrowth = 15; 
+  facultyGrowth = 5;   
   totalFaculty = 85;
   totalRegistrars = 5;
 
@@ -237,7 +237,6 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
     this.initializeData();
-    // Listen to route changes and update currentSection
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -308,7 +307,6 @@ export class AdminDashboardComponent implements OnInit {
 
 
   ngOnInit() {
-    // Set currentSection based on the route
     const url = this.router.url;
     if (url.endsWith('/overview')) {
       this.currentSection = 'overview';
@@ -474,7 +472,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    // Implement delete user logic with confirmation
     if (confirm(`Are you sure you want to delete ${user.name}?`)) {
       this.users = this.users.filter(u => u.id !== user.id);
       this.filterUsers();
