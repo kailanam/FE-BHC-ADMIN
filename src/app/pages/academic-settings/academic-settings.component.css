@@ -1,6 +1,6 @@
 /* Settings Section */
 .settings-section {
-  background: white;
+  background: #fff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -35,25 +35,27 @@
   cursor: pointer;
   background: #fff;
   transition: background-color 0.2s;
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
 }
 
 .setting-controls button:not(.backup-btn):not(.restore-btn):not(.danger-btn):hover:not(:disabled) {
-  background: #e3f2fd;
-  color: #1976d2;
-  border-color: #2196f3;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
+  background: #ececec;
+  color: var(--maroon-dark);
+  border-color: var(--maroon-dark);
+  box-shadow: 0 2px 8px rgba(174, 16, 57, 0.10);
 }
 
 .backup-btn {
-  color: #2196f3;
-  border-color: #2196f3;
+  color: var(--maroon);
+  border-color: var(--maroon);
 }
 
 .backup-btn:hover:not(:disabled) {
-  background: #2196f3;
+  background: var(--maroon);
   color: #fff;
-  border-color: #1976d2;
-  box-shadow: 0 4px 16px rgba(33, 150, 243, 0.18);
+  border-color: var(--maroon-dark);
+  box-shadow: 0 4px 16px rgba(174, 16, 57, 0.18);
 }
 
 .restore-btn {
@@ -117,47 +119,48 @@
 }
 
 .academic-year-item:hover {
-  background: #e3f2fd;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
-  color: #1976d2;
+  background: #ececec;
+  color: var(--maroon-dark);
+  box-shadow: 0 2px 8px rgba(174, 16, 57, 0.08);
 }
 
 .academic-year-item:active {
-  background: #bbdefb;
-  color: #1565c0;
+  background: #e0e0e0;
+  color: var(--maroon-dark);
 }
 
 .academic-year-item.selected,
 .academic-year-item.active {
-  background: #e8f5e9;
+  background: #ececec;
   font-weight: bold;
-  color: #4caf50;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.08);
+  color: var(--maroon-dark);
+  box-shadow: 0 2px 8px rgba(174, 16, 57, 0.08);
 }
 
 .academic-year-item.selected:hover {
-  background: #c8e6c9;
-  color: #388e3c;
+  background: #e0e0e0;
+  color: var(--maroon-dark);
 }
 
 .academic-year-item button {
   padding: 4px 12px;
   border-radius: 4px;
-  border: 1px solid #2196f3;
+  border: 1px solid var(--maroon);
   background: #fff;
-  color: #2196f3;
+  color: var(--maroon);
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .academic-year-item button:hover {
-  background: #e3f2fd;
+  background: #ececec;
+  color: var(--maroon-dark);
 }
 
 .active-academic-period-label {
   font-size: 18px;
   font-weight: 600;
-  color: #4caf50;
+  color: var(--maroon);
   margin-bottom: 12px;
 }
 
@@ -170,9 +173,9 @@
 .semester-buttons button {
   padding: 8px 18px;
   border-radius: 6px;
-  border: 1px solid #2196f3;
+  border: 1px solid var(--maroon);
   background: #fff;
-  color: #2196f3;
+  color: var(--maroon);
   font-size: 15px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -180,16 +183,16 @@
 
 .semester-buttons button.selected,
 .semester-buttons button:active {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #ececec;
+  color: var(--maroon-dark);
   font-weight: bold;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
+  box-shadow: 0 2px 8px rgba(174, 16, 57, 0.08);
 }
 
 .semester-buttons button:hover:not(:disabled) {
-  background: #bbdefb;
-  color: #1565c0;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+  background: #e0e0e0;
+  color: var(--maroon-dark);
+  box-shadow: 0 2px 8px rgba(174, 16, 57, 0.15);
 }
 
 .semester-buttons button:disabled {

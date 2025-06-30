@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 import { MOCK_USERS } from '../components/mockdata/mock-users';
 import { MOCK_AUDIT_LOGS } from '../components/mockdata/mock-audit-logs';
 import { MOCK_RECENT_ACTIVITIES } from '../components/mockdata/mock-recent-activities';
-import { AcademicSettingsComponent } from '../academic-settings/academic-settings.component';
+import { AcademicSettingsComponent } from '../pages/academic-settings/academic-settings.component';
 
 export interface User {
   id: string;
@@ -482,7 +482,6 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  // Audit trail methods
   filterAuditLogs() {
     this.filteredAuditLogs = this.auditLogs.filter(log => {
       const dateInRange = log.timestamp >= this.auditStartDate && 
@@ -496,7 +495,7 @@ export class AdminDashboardComponent implements OnInit {
   private addAuditLog(action: string, details: string) {
     const log: AuditLog = {
       timestamp: new Date(),
-      user: 'Current User', // Replace with actual user
+      user: 'Current User', 
       action,
       details
     };

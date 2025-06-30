@@ -48,6 +48,14 @@
             <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
             <span>Student Management</span>
           </a>
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('classlist-management')">
+            <app-icon name="classes" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Class List Management</span>
+          </a>
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('faculty-evalscore')">
+            <app-icon name="dashboard" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Faculty Evaluation</span>
+          </a>
         </div>
       </div>
       <a class="sidebar-link logout-link" (click)="logout()">
@@ -59,8 +67,17 @@
     </nav>
   </aside>
 
-  <!-- Mobile Sidebar Drawer -->
-  <aside class="sidebar-drawer" [class.open]="sidebarOpen" *ngIf="isMobile()">
+<!-- Mobile Sidebar Wrapper -->
+<div *ngIf="isMobile()">
+  <!-- Overlay -->
+  <div class="sidebar-overlay" *ngIf="sidebarOpen" (click)="closeSidebar()"></div>
+
+  <!-- Sidebar Drawer -->
+  <aside
+    class="sidebar-drawer"
+    [class.open]="sidebarOpen"
+    (click)="$event.stopPropagation()"
+  >
     <div class="sidebar-profile">
       <div class="sidebar-avatar">
         <img src="assets/BHE-LOGO.png" alt="BHC Logo" class="school-logo" />
@@ -108,6 +125,14 @@
             <app-icon name="user-pen" [size]="16" color="#FFFFFF"></app-icon>
             <span>Student Management</span>
           </a>
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('classlist-management')">
+            <app-icon name="classes" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Class List Management</span>
+          </a>
+          <a class="sidebar-sublink" (click)="navigateToManagementSub('faculty-evalscore')">
+            <app-icon name="dashboard" [size]="16" color="#FFFFFF"></app-icon>
+            <span>Faculty Evaluation</span>
+          </a>
         </div>
       </div>
       <a class="sidebar-link logout-link" (click)="logout()">
@@ -118,7 +143,5 @@
       </a>
     </nav>
   </aside>
-
-  <!-- Sidebar Overlay for Mobile -->
-  <div class="sidebar-overlay" *ngIf="sidebarOpen && isMobile()" (click)="closeSidebar()"></div>
 </div>
+

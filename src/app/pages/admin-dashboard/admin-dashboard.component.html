@@ -182,22 +182,6 @@
               </div>
             </div>
           </section>
-          <!-- Recent Activity Section -->
-          <section class="activity-section">
-            <h2>Recent Activity</h2>
-            <div class="activity-list">
-              <div class="activity-card" *ngFor="let activity of recentActivities">
-                <div class="activity-icon">
-                  <app-icon [name]="activity.icon" [size]="20" [color]="activity.iconColor"></app-icon>
-                </div>
-                <div class="activity-details">
-                  <p class="activity-user">{{activity.user}}</p>
-                  <p class="activity-action">{{activity.action}}</p>
-                  <p class="activity-time">{{activity.timestamp | date:'short'}}</p>
-                </div>
-              </div>
-            </div>
-          </section>
         </div>
         <!-- Settings Section -->
         <app-academic-settings *ngSwitchCase="'settings'"></app-academic-settings>
