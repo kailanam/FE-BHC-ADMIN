@@ -84,7 +84,15 @@ export class AdminDashboardComponent implements OnInit {
   @ViewChild(SideBarComponent) sideBar!: SideBarComponent;
 
   // Chart options
-  view: [number, number] = [700, 400];
+  view: [number, number] = [380, 420];
+
+  // Force chart rendering after data is set
+  private forceChartUpdate() {
+    // This is a hack for ngx-charts: re-assigning the array reference triggers re-render
+    this.enrollmentChartData = [...this.enrollmentChartData];
+    this.programChartData = [...this.programChartData];
+    this.attendanceChartData = [...this.attendanceChartData];
+  }
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -307,6 +315,8 @@ export class AdminDashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.updateChartView();
+    window.addEventListener('resize', () => this.updateChartView());
     const url = this.router.url;
     if (url.endsWith('/overview')) {
       this.currentSection = 'overview';
@@ -318,6 +328,16 @@ export class AdminDashboardComponent implements OnInit {
       this.currentSection = 'audit';
     } else {
       this.currentSection = 'overview';
+    }
+  }
+
+  updateChartView() {
+    if (window.innerWidth < 600) {
+      this.view = [220, 310];
+    } else if (window.innerWidth < 900) {
+      this.view = [480, 320];
+    } else {
+      this.view = [380, 420];
     }
   }
 
@@ -334,6 +354,7 @@ export class AdminDashboardComponent implements OnInit {
       name: 'Enrollment',
       series: series
     }];
+    this.forceChartUpdate();
   }
 
   prepareProgramData() {
@@ -343,6 +364,7 @@ export class AdminDashboardComponent implements OnInit {
         name: program.name,
         value: program.studentCount
       }));
+    this.forceChartUpdate();
   }
 
   prepareGenderData() {
@@ -389,6 +411,7 @@ export class AdminDashboardComponent implements OnInit {
         }))
       }
     ];
+    this.forceChartUpdate();
   }
 
   prepareWorkloadData() {

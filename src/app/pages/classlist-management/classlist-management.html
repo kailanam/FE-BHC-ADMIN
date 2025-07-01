@@ -6,7 +6,16 @@
             <div class="student-list">
                 <h2>Student List</h2>
                 <div class="student-search">
-                  <input type="text" placeholder="Search by name or department..." [(ngModel)]="studentSearchQuery" (ngModelChange)="filterStudents()">
+                  <select [(ngModel)]="selectedYear" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc;">
+                    <option value="">All Years</option>
+                    <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                  </select>
+                  <select [(ngModel)]="selectedDepartment" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc;">
+                    <option value="">All Departments</option>
+                    <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+                  </select>
+                  <button class="filter-btn" (click)="applyFilters()">Filter</button>
+                  <input type="text" placeholder="Search by name..." [(ngModel)]="studentSearchQuery" (ngModelChange)="filterStudents()" style="flex:1;">
                 </div>
                 <div class="student-list-labels">
                   <span class="student-label student-label-name">Name</span>

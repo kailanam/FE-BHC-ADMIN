@@ -1,3 +1,17 @@
+/* Filter Button */
+.filter-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: var(--maroon);
+  color: #fff;
+  border: none;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+
+.filter-btn:hover {
+  background: var(--maroon-dark);
+}
 /* Root and base styles */
 html, body {
   height: 100%;
@@ -5,7 +19,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", Arial, sans-serif;
-  background: #f6f6f6;
+  background: var(--background, #f6f6f6);
 }
 
 .classlist-management {
@@ -58,17 +72,32 @@ html, body {
   font-size: 1.2em;
 }
 
+/* Responsive filter/search controls */
 .student-search {
   margin-bottom: 12px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
+.student-search select,
 .student-search input {
-  width: 100%;
   padding: 6px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1em;
 }
+
+.student-search input {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+
+.student-search .filter-btn {
+  flex-shrink: 0;
+}
+
 
 .student-scroll {
   flex: 1;
@@ -168,7 +197,7 @@ html, body {
 
 .class-item {
   flex: 1;
-  background: #f7f7f7;
+  background: var(--background-secondary, #f7f7f7);
   border-radius: 8px;
   padding: 16px;
   min-width: 200px;
@@ -266,6 +295,12 @@ html, body {
     flex-direction: column;
     gap: 16px;
   }
+
+  .student-search {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
 }
 
 /* Responsive styles for mobile */
@@ -298,6 +333,11 @@ html, body {
   .update-btn {
     width: 100%;
     margin-top: 12px;
+  }
+  .student-search {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 }
 

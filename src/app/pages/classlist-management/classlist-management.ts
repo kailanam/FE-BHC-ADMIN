@@ -18,6 +18,10 @@ export class ClasslistManagement {
   selectedStudent: Student | null = null;
 
   allClasses: ClassItem[] = MOCK_CLASSES;
+  years: string[] = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+  departments: string[] = Array.from(new Set(MOCK_STUDENTS.map(s => s.department)));
+  selectedYear: string = '';
+  selectedDepartment: string = '';
 
   get enrolledClasses() {
     return this.selectedStudent ? this.selectedStudent.enrolledClasses : [];
@@ -30,10 +34,18 @@ export class ClasslistManagement {
 
   filterStudents() {
     const query = this.studentSearchQuery.toLowerCase();
-    this.filteredStudents = this.students.filter(student =>
-      student.name.toLowerCase().includes(query) ||
-      student.department.toLowerCase().includes(query)
-    );
+    this.filteredStudents = this.students.filter(student => {
+      const matchesQuery =
+        student.name.toLowerCase().includes(query) ||
+        student.department.toLowerCase().includes(query);
+      const matchesYear = !this.selectedYear || student.year === this.selectedYear;
+      const matchesDepartment = !this.selectedDepartment || student.department === this.selectedDepartment;
+      return matchesQuery && matchesYear && matchesDepartment;
+    });
+  }
+
+  applyFilters() {
+    this.filterStudents();
   }
 
   selectStudent(student: Student) {
