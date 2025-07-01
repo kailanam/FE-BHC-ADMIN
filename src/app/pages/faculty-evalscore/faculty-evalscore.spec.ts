@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconComponent } from './icon.component';
+import { FacultyEvalscore } from './faculty-evalscore';
 
-describe('IconComponent', () => {
-  let component: IconComponent;
-  let fixture: ComponentFixture<IconComponent>;
+describe('FacultyEvalscore', () => {
+  let component: FacultyEvalscore;
+  let fixture: ComponentFixture<FacultyEvalscore>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconComponent]
+      imports: [FacultyEvalscore]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(IconComponent);
+    fixture = TestBed.createComponent(FacultyEvalscore);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

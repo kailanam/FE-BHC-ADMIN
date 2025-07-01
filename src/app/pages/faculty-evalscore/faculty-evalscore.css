@@ -1,0 +1,269 @@
+/* Base styles */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f8f9fa;
+}
+
+.faculty-evalscore {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+/* Fixed header */
+.header-wrapper {
+  position: fixed;
+  left: 280px;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding-bottom: 1rem;
+}
+
+/* Scrollable area */
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+  margin-top: 80px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Left and Right Columns */
+.two-column-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.left-column {
+  width: 260px;
+  background: #f4f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  height: fit-content;
+  position: sticky;
+  top: 60px;
+}
+
+.right-column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.class-section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.container h1 {
+  font-size: 2rem;
+  color: var(--maroon);
+  margin-bottom: 1.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  color: var(--maroon);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating-scale-info,
+.interpretation-scale-info {
+  background: #eaf1fb;
+  border-left: 4px solid var(--maroon);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+
+.rating-scale-info h3,
+.interpretation-scale-info h3 {
+  margin-top: 0;
+  color: var(--maroon);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+table th,
+table td {
+  border: 1px solid #dbe2ea;
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+}
+
+table th {
+  background: #f0f4f8;
+  color: var(--maroon-dark);
+}
+
+input[type="radio"] {
+  accent-color: var(--maroon);
+  width: 1.1em;
+  height: 1.1em;
+}
+
+textarea {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #dbe2ea;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+.submit-section {
+  text-align: right;
+  margin-top: 2rem;
+}
+
+button {
+  background: var(--maroon);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: var(--maroon-dark);
+}
+
+.footer {
+  text-align: center;
+  color: #7a869a;
+  font-size: 0.95rem;
+  margin-top: 2.5rem;
+}
+
+/* Faculty List Styling */
+.faculty-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.faculty-list li {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #e0e6ed;
+  transition: background 0.2s, border 0.2s;
+}
+
+.faculty-list li.selected,
+.faculty-list li:hover {
+  background: var(--maroon);
+  color: #fff;
+  border: 1px solid var(--maroon);
+}
+
+.faculty-list li small {
+  color: #7a869a;
+}
+
+.faculty-list li.selected small,
+.faculty-list li:hover small {
+  color: #eaf1fb;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 900px) {
+  .faculty-evalscore {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .header-wrapper {
+    position: static;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding-bottom: 0.5rem;
+  }
+  .main-content {
+    flex-direction: column;
+    margin-top: 0;
+    padding: 1rem 0.5rem;
+  }
+  .two-column-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .left-column {
+    width: 100%;
+    position: static;
+    top: auto;
+    margin-bottom: 1rem;
+  }
+  .right-column {
+    width: 100%;
+    margin-top: 0;
+  }
+  .class-section {
+    padding: 1rem;
+    margin-top: 0;
+  }
+  table th, table td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.95rem;
+  }
+  .submit-section {
+    text-align: center;
+  }
+  .faculty-list {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .class-section, .container h1, .section h2 {
+    font-size: 1rem;
+  }
+  .class-section {
+    padding: 0.5rem;
+  }
+  .faculty-list li {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.95rem;
+  }
+  textarea {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+  button {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}

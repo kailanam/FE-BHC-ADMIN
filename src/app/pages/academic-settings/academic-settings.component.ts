@@ -27,15 +27,12 @@ export class AcademicSettingsComponent {
     '2029-2030'
   ];
   semesters = ['1st', '2nd', 'Summer'];
-
-  // Staging variables for update
   stagedSchoolYear = this.currentSchoolYear;
   stagedSemester = this.currentSemester;
 
   updateAcademicPeriod() {
     this.currentSchoolYear = this.stagedSchoolYear;
     this.currentSemester = this.stagedSemester;
-    // Implement academic period update logic
     alert(`Updated academic period to ${this.currentSchoolYear} ${this.currentSemester}`);
   }
 
@@ -59,7 +56,6 @@ export class AcademicSettingsComponent {
 
   activateAcademicYear(year: string) {
     this.stagedSchoolYear = year;
-    // Optionally, also reset stagedSemester if needed
   }
 
   selectAcademicYear(year: string) {

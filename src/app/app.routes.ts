@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { FacultyManagementComponent } from './faculty-management/faculty-management.component';
-import { StudentManagementComponent } from './student-management/student-management.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { FacultyManagementComponent } from './pages/faculty-management/faculty-management.component';
+import { StudentManagementComponent } from './pages/student-management/student-management.component';
+import { ClasslistManagement } from './pages/classlist-management/classlist-management';
+import { FacultyEvalscore} from './pages/faculty-evalscore/faculty-evalscore';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -20,5 +22,7 @@ export const routes: Routes = [
   },
   { path: 'faculty', component: FacultyManagementComponent },
   { path: 'students', component: StudentManagementComponent },
+  { path: 'classlist-management', component: ClasslistManagement },
+  { path: 'faculty-evalscore', component: FacultyEvalscore },
   { path: '**', redirectTo: 'admin-dashboard' },
 ];

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../components/header/header.component';
-import { SideBarComponent } from '../components/side-bar/side-bar.component';
-import { IconComponent } from '../icon/icon.component';
+import { HeaderComponent } from '../../components/header/header.component';
+import { SideBarComponent } from '../../components/side-bar/side-bar.component';
+import { IconComponent } from '../../components/icon/icon.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

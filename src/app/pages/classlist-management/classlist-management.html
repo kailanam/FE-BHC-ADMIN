@@ -1,0 +1,56 @@
+<div class="classlist-management">
+    <app-side-bar></app-side-bar>
+    <div class="content-wrapper">
+    <app-header></app-header>
+        <div class="classlist-wrapper">
+            <div class="student-list">
+                <h2>Student List</h2>
+                <div class="student-search">
+                  <input type="text" placeholder="Search by name or department..." [(ngModel)]="studentSearchQuery" (ngModelChange)="filterStudents()">
+                </div>
+                <div class="student-list-labels">
+                  <span class="student-label student-label-name">Name</span>
+                  <span class="student-label student-label-dept">Department</span>
+                  <span class="student-label student-label-year">Year</span>
+                </div>
+                <ul class="student-scroll">
+                  <li *ngFor="let student of filteredStudents" (click)="selectStudent(student)" [class.selected]="student === selectedStudent">
+                    <span class="student-name">{{student.name}}</span>
+                    <span class="student-dept">{{student.department}}</span>
+                    <span class="student-year">{{student.year}}</span>
+                  </li>
+                </ul>
+            </div>
+
+            <div class="class-list">
+                <h2>Class List</h2>
+                <h3>Student Name: John Doe</h3>
+                <div class="class-columns">
+                  <!-- Enrolled Classes Column -->
+                  <div class="class-item enrolled-classes">
+                    <h4>Enrolled Classes</h4>
+                    <ul>
+                      <li *ngFor="let cls of enrolledClasses">
+                        {{cls.name}}
+                        <button (click)="removeClass(cls)">Delete</button>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Available Classes Column -->
+                  <div class="class-item available-classes">
+                    <h4>Available Classes</h4>
+                    <ul>
+                      <li *ngFor="let cls of availableClasses">
+                        {{cls.name}}
+                        <button (click)="addClass(cls)">Add</button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <button class="update-btn" (click)="updateClasses()">Update</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

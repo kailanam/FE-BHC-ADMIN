@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../icon/icon.component';
 import { filter } from 'rxjs/operators';
 import { SidebarService } from './sidebar.service';
 import { Subscription } from 'rxjs';
@@ -18,12 +18,16 @@ export class SideBarComponent implements OnInit, OnDestroy {
   activePage: string = 'admin-dashboard';
   activeSubPage: string = 'overview';
   isExpanded: boolean = true;
-  sidebarOpen: boolean = false; // set this to false before production
+  sidebarOpen: boolean = false;
   showDashboardMenu: boolean = false;
   showFacultyMenu: boolean = false;
   private sidebarSub?: Subscription;
 
-  constructor(private router: Router, private cdr: ChangeDetectorRef, private sidebarService: SidebarService) {
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private sidebarService: SidebarService
+  ) {
     if (this.router.url === '/') {
       this.router.navigate(['/admin-dashboard/overview']);
     }
@@ -35,17 +39,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
         if (urlParts.length > 1) {
           this.activePage = urlParts[1];
           this.activeSubPage = urlParts.length > 2 ? urlParts[2] : '';
-
-          if (this.activePage === 'admin-dashboard') {
-            this.showDashboardMenu = true;
-            this.showFacultyMenu = false;
-          } else if (this.activePage === 'faculty' || this.activePage === 'students') {
-            this.showFacultyMenu = true;
-            this.showDashboardMenu = false;
-          } else {
-            this.showDashboardMenu = false;
-            this.showFacultyMenu = false;
-          }
+          this.updateSubmenuVisibility(this.activePage);
         }
       });
   }
@@ -89,7 +83,15 @@ export class SideBarComponent implements OnInit, OnDestroy {
   }
 
   navigateToManagementSub(section: string) {
-    this.router.navigate(['/' + section]);
+    if (section === 'faculty') {
+      this.router.navigate(['/faculty']);
+    } else if (section === 'students') {
+      this.router.navigate(['/students']);
+    } else if (section === 'classlist-management') {
+      this.router.navigate(['/classlist-management']);
+    } else if (section === 'faculty-evalscore') {
+      this.router.navigate(['/faculty-evalscore']);
+    }
     this.closeSidebar();
   }
 
@@ -119,5 +121,25 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
   isMobile(): boolean {
     return typeof window !== 'undefined' && window.innerWidth <= 900;
+  }
+
+  private updateSubmenuVisibility(activePage: string) {
+    const facultyPages = [
+      'faculty',
+      'students',
+      'classlist-management',
+      'faculty-evalscore',
+    ];
+
+    if (activePage === 'admin-dashboard') {
+      this.showDashboardMenu = true;
+      this.showFacultyMenu = false;
+    } else if (facultyPages.includes(activePage)) {
+      this.showDashboardMenu = false;
+      this.showFacultyMenu = true;
+    } else {
+      this.showDashboardMenu = false;
+      this.showFacultyMenu = false;
+    }
   }
 }

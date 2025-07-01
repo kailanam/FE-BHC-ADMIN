@@ -1,16 +1,16 @@
 import { Component, OnInit, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
-import { SideBarComponent } from '../components/side-bar/side-bar.component';
-import { HeaderComponent } from '../components/header/header.component';
+import { SideBarComponent } from '../../components/side-bar/side-bar.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { IconComponent } from '../icon/icon.component';
+import { IconComponent } from '../..//components/icon/icon.component';
 import { FormsModule } from '@angular/forms';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { MOCK_USERS } from '../components/mockdata/mock-users';
-import { MOCK_AUDIT_LOGS } from '../components/mockdata/mock-audit-logs';
-import { MOCK_RECENT_ACTIVITIES } from '../components/mockdata/mock-recent-activities';
-import { AcademicSettingsComponent } from '../academic-settings/academic-settings.component';
+import { MOCK_USERS } from '../../components/mockdata/mock-users';
+import { MOCK_AUDIT_LOGS } from '../../components/mockdata/mock-audit-logs';
+import { MOCK_RECENT_ACTIVITIES } from '../../components/mockdata/mock-recent-activities';
+import { AcademicSettingsComponent } from '../../pages/academic-settings/academic-settings.component';
 
 export interface User {
   id: string;
@@ -125,8 +125,8 @@ export class AdminDashboardComponent implements OnInit {
   totalStudents = 1250;
   activeUsersToday = 450;
   activeUsersWeek = 1200;
-  studentGrowth = 15;  // 15% growth from last month
-  facultyGrowth = 5;   // 5% growth from last month
+  studentGrowth = 15; 
+  facultyGrowth = 5;   
   totalFaculty = 85;
   totalRegistrars = 5;
 
@@ -237,7 +237,6 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
     this.initializeData();
-    // Listen to route changes and update currentSection
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -308,7 +307,6 @@ export class AdminDashboardComponent implements OnInit {
 
 
   ngOnInit() {
-    // Set currentSection based on the route
     const url = this.router.url;
     if (url.endsWith('/overview')) {
       this.currentSection = 'overview';
@@ -474,7 +472,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    // Implement delete user logic with confirmation
     if (confirm(`Are you sure you want to delete ${user.name}?`)) {
       this.users = this.users.filter(u => u.id !== user.id);
       this.filterUsers();
@@ -482,7 +479,6 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  // Audit trail methods
   filterAuditLogs() {
     this.filteredAuditLogs = this.auditLogs.filter(log => {
       const dateInRange = log.timestamp >= this.auditStartDate && 
@@ -496,7 +492,7 @@ export class AdminDashboardComponent implements OnInit {
   private addAuditLog(action: string, details: string) {
     const log: AuditLog = {
       timestamp: new Date(),
-      user: 'Current User', // Replace with actual user
+      user: 'Current User', 
       action,
       details
     };
