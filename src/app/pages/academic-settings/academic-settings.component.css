@@ -129,8 +129,8 @@
   color: var(--maroon-dark);
 }
 
-.academic-year-item.selected,
-.academic-year-item.active {
+
+.academic-year-item.selected {
   background: #ececec;
   font-weight: bold;
   color: var(--maroon-dark);
@@ -181,8 +181,8 @@
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.semester-buttons button.selected,
-.semester-buttons button:active {
+
+.semester-buttons button.selected {
   background: #ececec;
   color: var(--maroon-dark);
   font-weight: bold;

@@ -16,9 +16,8 @@
       <div class="academic-year-list">
         <div *ngFor="let year of academicYears" 
              class="academic-year-item" 
-             [class.active]="year === stagedSchoolYear"
              [class.selected]="year === stagedSchoolYear"
-             (click)="selectAcademicYear(year)"
+             (click)="activateAcademicYear(year)"
              tabindex="0">
           <span>{{ year }}</span>
           <span *ngIf="year === stagedSchoolYear" class="active-label">Selected</span>

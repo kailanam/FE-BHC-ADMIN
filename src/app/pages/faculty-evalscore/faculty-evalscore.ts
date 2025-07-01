@@ -52,8 +52,6 @@ export class FacultyEvalscore implements OnInit {
   private router = inject(Router);
   
   faculty: Faculty | undefined;
-  studentName = 'Student Name';
-  sidebarOpen = false;
   currentDateTime = new Date();
   facultyList = MOCK_FACULTY;
 
@@ -68,13 +66,7 @@ export class FacultyEvalscore implements OnInit {
     }, 1000);
   }
 
-  toggleSidebar(): void {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  closeSidebar(): void {
-    this.sidebarOpen = false;
-  }
+  // ...existing code...
 
   todolist(): void {
     this.router.navigate(['/todolist']);

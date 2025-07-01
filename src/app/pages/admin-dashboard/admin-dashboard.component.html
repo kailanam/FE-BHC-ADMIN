@@ -148,8 +148,8 @@
                     (select)="onSelect($event)">
                   </ngx-charts-pie-chart>
                   <div class="custom-legend-row">
-                    <ng-container *ngFor="let item of genderChartData">
-                      <span class="legend-dot" [style.background]="item.color"></span>
+                    <ng-container *ngFor="let item of genderChartData; let i = index">
+                      <span class="legend-dot" [style.background]="colorScheme.domain[i % colorScheme.domain.length]"></span>
                       <span class="legend-label">{{ item.name }}</span>
                     </ng-container>
                   </div>

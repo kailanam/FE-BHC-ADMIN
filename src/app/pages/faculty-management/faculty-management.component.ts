@@ -13,13 +13,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class FacultyManagementComponent {
   userSearchQuery: string = '';
-  departments: string[] = ['None', 'Science', 'Arts', 'Engineering', 'Business', 'Law'];
+  departments: string[] = ['Science', 'Arts', 'Engineering', 'Business', 'Law'];
   users = [
     { name: 'John Doe', role: 'faculty', status: 'active', department: 'Science', lastActive: new Date() },
     { name: 'Jane Smith', role: 'admin', status: 'inactive', department: 'Arts', lastActive: new Date() },
     { name: 'Alice Johnson', role: 'registrar', status: 'active', department: 'Engineering', lastActive: new Date() }
   ];
-  filteredUsers = this.users;
+  filteredUsers = this.users.slice();
 
   editingUser = false;
   addingUser = false;

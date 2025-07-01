@@ -18,7 +18,7 @@ export class StudentManagementComponent {
     { name: 'Emily White', status: 'inactive', department: 'Arts', lastActive: new Date() },
     { name: 'Chris Green', status: 'active', department: 'Engineering', lastActive: new Date() }
   ];
-  filteredStudents = this.students;
+  filteredStudents = this.students.slice();
 
   editingStudent = false;
   addingStudent = false;

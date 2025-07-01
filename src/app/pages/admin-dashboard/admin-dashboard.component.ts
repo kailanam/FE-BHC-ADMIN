@@ -88,7 +88,6 @@ export class AdminDashboardComponent implements OnInit {
 
   // Force chart rendering after data is set
   private forceChartUpdate() {
-    // This is a hack for ngx-charts: re-assigning the array reference triggers re-render
     this.enrollmentChartData = [...this.enrollmentChartData];
     this.programChartData = [...this.programChartData];
     this.attendanceChartData = [...this.attendanceChartData];
@@ -237,14 +236,16 @@ export class AdminDashboardComponent implements OnInit {
 
   // User Management Edit Modal
   editingUser: User | null = null;
-  editUserData = { name: '', role: 'admin', status: 'active' };
+  editUserData: User = { id: '', name: '', role: 'admin', status: 'active', lastActive: new Date() };
 
   // Add User Modal State
   addingUser = false;
-  newUserData = { name: '', role: 'admin', status: 'active' };
+  newUserData: User = { id: '', name: '', role: 'admin', status: 'active', lastActive: new Date() };
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
-    this.initializeData();
+    this.prepareAllChartData();
+    this.auditLogs = [...MOCK_AUDIT_LOGS];
+    this.filteredAuditLogs = [...MOCK_AUDIT_LOGS];
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -261,7 +262,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   private initializeAuditLogs() {
-    // Initialize audit logs with sample data
     this.auditLogs = [
       {
         timestamp: new Date(),
@@ -433,7 +433,7 @@ export class AdminDashboardComponent implements OnInit {
   // User management methods
   openUserModal() {
     this.addingUser = true;
-    this.newUserData = { name: '', role: 'admin', status: 'active' };
+    this.newUserData = { id: '', name: '', role: 'admin', status: 'active', lastActive: new Date() };
   }
 
   saveNewUser() {
@@ -467,11 +467,7 @@ export class AdminDashboardComponent implements OnInit {
 
   editUser(user: User) {
     this.editingUser = { ...user };
-    this.editUserData = {
-      name: user.name,
-      role: user.role,
-      status: user.status
-    };
+    this.editUserData = { ...user };
   }
 
   saveUserEdit() {

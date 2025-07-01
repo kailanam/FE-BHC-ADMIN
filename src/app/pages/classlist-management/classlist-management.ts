@@ -44,9 +44,6 @@ export class ClasslistManagement {
     });
   }
 
-  applyFilters() {
-    this.filterStudents();
-  }
 
   selectStudent(student: Student) {
     this.selectedStudent = student;

@@ -58,10 +58,6 @@ export class AcademicSettingsComponent {
     this.stagedSchoolYear = year;
   }
 
-  selectAcademicYear(year: string) {
-    this.activateAcademicYear(year);
-  }
-
   get activeAcademicPeriodLabel(): string {
     return `Academic Year ${this.currentSchoolYear} ${this.currentSemester} Semester`;
   }

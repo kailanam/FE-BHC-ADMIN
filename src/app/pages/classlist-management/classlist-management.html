@@ -3,6 +3,7 @@
     <div class="content-wrapper">
     <app-header></app-header>
         <div class="classlist-wrapper">
+            <!-- student list -->
             <div class="student-list">
                 <h2>Student List</h2>
                 <div class="student-search">
@@ -14,7 +15,7 @@
                     <option value="">All Departments</option>
                     <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
                   </select>
-                  <button class="filter-btn" (click)="applyFilters()">Filter</button>
+                  <button class="filter-btn" (click)="filterStudents()">Filter</button>
                   <input type="text" placeholder="Search by name..." [(ngModel)]="studentSearchQuery" (ngModelChange)="filterStudents()" style="flex:1;">
                 </div>
                 <div class="student-list-labels">
@@ -30,10 +31,10 @@
                   </li>
                 </ul>
             </div>
-
+            <!-- class list -->
             <div class="class-list">
                 <h2>Class List</h2>
-                <h3>Student Name: John Doe</h3>
+                <h3>Student Name: {{selectedStudent?.name || 'None selected'}}</h3>
                 <div class="class-columns">
                   <!-- Enrolled Classes Column -->
                   <div class="class-item enrolled-classes">
