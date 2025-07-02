@@ -2,7 +2,7 @@
 export default {
   bootstrap: () => import('./main.server.mjs').then(m => m.default),
   inlineCriticalCss: true,
-  baseHref: '/FE-BHC-ADMIN',
+  baseHref: '/FE-BHC-ADMIN/',
   locale: undefined,
   routes: [
   {
@@ -58,18 +58,18 @@ export default {
 ],
   entryPointToBrowserMapping: undefined,
   assets: {
-    'index.csr.html': {size: 856, hash: '2a2a0d699ee8e45ba6db9ca2a3847b5a5dc4fee38e7c54c1f0aaccad29a7be14', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 960, hash: '9398dd71e762e9e3944a43d82d0dec077fce03a98951d7f5a63cb0296f0b9041', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
-    'login/index.html': {size: 12140, hash: '817e8f89dbf8e4ea2b54f262443af1593f6b8a83464baf8447008051f19523e5', text: () => import('./assets-chunks/login_index_html.mjs').then(m => m.default)},
-    'admin-dashboard/overview/index.html': {size: 40242, hash: 'cdd1bd14e4b78024a18486cc845b76abad306eeaba2116b48438f4146b6a1718', text: () => import('./assets-chunks/admin-dashboard_overview_index_html.mjs').then(m => m.default)},
-    'admin-dashboard/audit/index.html': {size: 40242, hash: 'cdd1bd14e4b78024a18486cc845b76abad306eeaba2116b48438f4146b6a1718', text: () => import('./assets-chunks/admin-dashboard_audit_index_html.mjs').then(m => m.default)},
-    'admin-dashboard/settings/index.html': {size: 40242, hash: 'cdd1bd14e4b78024a18486cc845b76abad306eeaba2116b48438f4146b6a1718', text: () => import('./assets-chunks/admin-dashboard_settings_index_html.mjs').then(m => m.default)},
-    'admin-dashboard/users/index.html': {size: 40242, hash: 'cdd1bd14e4b78024a18486cc845b76abad306eeaba2116b48438f4146b6a1718', text: () => import('./assets-chunks/admin-dashboard_users_index_html.mjs').then(m => m.default)},
-    'classlist-management/index.html': {size: 47784, hash: 'c0ba44faff88af539c6c45327dd5f98eb9333308e9c72d330038e75851f4f136', text: () => import('./assets-chunks/classlist-management_index_html.mjs').then(m => m.default)},
-    'faculty-evalscore/index.html': {size: 46336, hash: 'faeedc79eb8df2a008ef78548b2c895b8922d324fae9bae4894ec6f0ee53f5a4', text: () => import('./assets-chunks/faculty-evalscore_index_html.mjs').then(m => m.default)},
-    'students/index.html': {size: 39219, hash: 'b0a023f1a0ed6c71839cad5984c231311b38e33d2956136e1332d3094ba3d062', text: () => import('./assets-chunks/students_index_html.mjs').then(m => m.default)},
-    'index.html': {size: 12140, hash: '817e8f89dbf8e4ea2b54f262443af1593f6b8a83464baf8447008051f19523e5', text: () => import('./assets-chunks/index_html.mjs').then(m => m.default)},
-    'faculty/index.html': {size: 39370, hash: 'c9ea0477092e7e6ab154c66d4fb0b0ddff2fa034e23d1aa01cf606450a3cd475', text: () => import('./assets-chunks/faculty_index_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 857, hash: '900504e952ee90c503d335cb6fc3b36c50d76a1062168819662964957101131f', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 961, hash: 'a6900ab1a331df734c867241ddb47d9cebd31d5b435ead456cdc4f2d5a0f3a12', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'index.html': {size: 12141, hash: 'a798c71f443ef0b933b6804b5ff19827e16c6956c5b1bfc95f9da72e53aa2a26', text: () => import('./assets-chunks/index_html.mjs').then(m => m.default)},
+    'faculty-evalscore/index.html': {size: 46337, hash: '7f332da49d6b64dbe5db402e28fccdc74548b53cc54dd396c6543b78eed80ec0', text: () => import('./assets-chunks/faculty-evalscore_index_html.mjs').then(m => m.default)},
+    'admin-dashboard/settings/index.html': {size: 40243, hash: '548ad338282cc3face0c11be91dfb632cb16089b9b2380973eded196a2af19c3', text: () => import('./assets-chunks/admin-dashboard_settings_index_html.mjs').then(m => m.default)},
+    'login/index.html': {size: 12141, hash: 'a798c71f443ef0b933b6804b5ff19827e16c6956c5b1bfc95f9da72e53aa2a26', text: () => import('./assets-chunks/login_index_html.mjs').then(m => m.default)},
+    'admin-dashboard/users/index.html': {size: 40243, hash: 'e8e874fba832c2fda786080cb88eaff4708cd538593b4a602262963239b0aa1d', text: () => import('./assets-chunks/admin-dashboard_users_index_html.mjs').then(m => m.default)},
+    'faculty/index.html': {size: 39371, hash: 'e8b740f42fdc028a4f280efd867bea365ad5b5269602bb6251fc0cd88b772234', text: () => import('./assets-chunks/faculty_index_html.mjs').then(m => m.default)},
+    'classlist-management/index.html': {size: 47793, hash: 'a4feeb9630bbb57b6629625b8e024a436a58301bb5d57a5f20649fd758537825', text: () => import('./assets-chunks/classlist-management_index_html.mjs').then(m => m.default)},
+    'admin-dashboard/overview/index.html': {size: 40243, hash: 'e8e874fba832c2fda786080cb88eaff4708cd538593b4a602262963239b0aa1d', text: () => import('./assets-chunks/admin-dashboard_overview_index_html.mjs').then(m => m.default)},
+    'students/index.html': {size: 39216, hash: 'e1ec63e2f77eec4c73368dc17ad375f64374ba37667b6b338ae5e12a98474253', text: () => import('./assets-chunks/students_index_html.mjs').then(m => m.default)},
+    'admin-dashboard/audit/index.html': {size: 40243, hash: 'e8e874fba832c2fda786080cb88eaff4708cd538593b4a602262963239b0aa1d', text: () => import('./assets-chunks/admin-dashboard_audit_index_html.mjs').then(m => m.default)},
     'styles-IY6XNZSL.css': {size: 412, hash: 'ZYduHRkiNDg', text: () => import('./assets-chunks/styles-IY6XNZSL_css.mjs').then(m => m.default)}
   },
 };
