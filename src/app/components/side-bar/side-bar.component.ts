@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
 import { filter } from 'rxjs/operators';
@@ -15,12 +15,12 @@ import { Subscription } from 'rxjs';
   styleUrl: './side-bar.component.css',
 })
 export class SideBarComponent implements OnInit, OnDestroy {
-  activePage: string = 'admin-dashboard';
-  activeSubPage: string = 'overview';
-  isExpanded: boolean = true;
-  sidebarOpen: boolean = false;
-  showDashboardMenu: boolean = false;
-  showFacultyMenu: boolean = false;
+  activePage = 'admin-dashboard';
+  activeSubPage = '';
+  sidebarOpen = true;
+  showFacultyMenu = false;
+  showAcademicSettingsMenu = false;
+
   private sidebarSub?: Subscription;
 
   constructor(
@@ -55,52 +55,25 @@ export class SideBarComponent implements OnInit, OnDestroy {
     this.sidebarSub?.unsubscribe();
   }
 
-  toggleDashboardMenu() {
-    this.showDashboardMenu = !this.showDashboardMenu;
-    if (this.showDashboardMenu) {
-      this.showFacultyMenu = false;
-    }
-  }
-
-  toggleFacultyMenu() {
-    this.showFacultyMenu = !this.showFacultyMenu;
-    if (this.showFacultyMenu) {
-      this.showDashboardMenu = false;
-    }
-  }
-
-  navigateToSection(section: string) {
-    if (section === 'admin-dashboard' && !this.activeSubPage) {
-      this.router.navigate(['/admin-dashboard/overview']);
-    } else {
-      if (section !== 'admin-dashboard') {
-        this.activeSubPage = '';
-        this.showDashboardMenu = false;
+  toggleMenu(menu: 'faculty' | 'academic') {
+    if (menu === 'faculty') {
+      this.showFacultyMenu = !this.showFacultyMenu;
+      if (this.showFacultyMenu) {
+        this.showAcademicSettingsMenu = false;
       }
-      this.router.navigate(['/' + section]);
+    } else if (menu === 'academic') {
+      this.showAcademicSettingsMenu = !this.showAcademicSettingsMenu;
+      if (this.showAcademicSettingsMenu) {
+        this.showFacultyMenu = false;
+      }
     }
-    this.closeSidebar();
   }
+
 
   navigateToManagementSub(section: string) {
-    if (section === 'faculty') {
-      this.router.navigate(['/faculty']);
-    } else if (section === 'students') {
-      this.router.navigate(['/students']);
-    } else if (section === 'classlist-management') {
-      this.router.navigate(['/classlist-management']);
-    } else if (section === 'faculty-evalscore') {
-      this.router.navigate(['/faculty-evalscore']);
-    }
+    this.router.navigate([`/${section}`]);
     this.closeSidebar();
-  }
-
-  adminDashboard() {
-    this.navigateToSection('admin-dashboard');
-  }
-
-  facultyPage() {
-    this.navigateToSection('faculty');
+    this.showAcademicSettingsMenu = false;
   }
 
   openSidebar() {
@@ -123,6 +96,12 @@ export class SideBarComponent implements OnInit, OnDestroy {
     return typeof window !== 'undefined' && window.innerWidth <= 900;
   }
 
+  onDashboardClick() {
+    this.showFacultyMenu = false;
+    this.showAcademicSettingsMenu = false;
+    this.closeSidebar();
+  }
+
   private updateSubmenuVisibility(activePage: string) {
     const facultyPages = [
       'faculty',
@@ -131,15 +110,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
       'faculty-evalscore',
     ];
 
-    if (activePage === 'admin-dashboard') {
-      this.showDashboardMenu = true;
-      this.showFacultyMenu = false;
-    } else if (facultyPages.includes(activePage)) {
-      this.showDashboardMenu = false;
-      this.showFacultyMenu = true;
-    } else {
-      this.showDashboardMenu = false;
-      this.showFacultyMenu = false;
-    }
+    this.showFacultyMenu = facultyPages.includes(activePage);
+    this.showAcademicSettingsMenu = this.activeSubPage === 'settings' || this.activeSubPage === 'audit';
   }
+
 }

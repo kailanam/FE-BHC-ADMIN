@@ -4,14 +4,29 @@
     <app-header></app-header>
   </div>
   <div class="main-content two-column-layout">
-    <div class="left-column">
+    <div class="left-column faculty-table-box">
       <h2>Select Faculty</h2>
-      <ul class="faculty-list">
-        <li *ngFor="let f of facultyList" [class.selected]="faculty?.id === f.id" (click)="selectFaculty(f)">
-          <span>{{ f.name }}</span><br>
-          <small>{{ f.department }} - {{ f.position }}</small>
-        </li>
-      </ul>
+      <div class="faculty-search-box">
+        <input type="text" placeholder="Search faculty..." [(ngModel)]="facultySearch" (ngModelChange)="filterFaculty()" />
+      </div>
+      <div class="faculty-table-wrapper">
+        <table class="faculty-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let f of filteredFacultyList" [class.selected]="faculty?.id === f.id" (click)="selectFaculty(f)">
+              <td>{{ f.name }}</td>
+              <td>{{ f.department }}</td>
+              <td>{{ f.position }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="right-column">
       <section class="class-section">

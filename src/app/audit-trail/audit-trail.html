@@ -1,0 +1,43 @@
+<div class="audit-dashboard">
+  <app-side-bar></app-side-bar>
+  <div class="content-wrapper">
+    <app-header></app-header>
+    <div class="main-content">
+      <section class="audit-section">
+        <h2>Audit Trail</h2>
+        <div class="audit-filters">
+          <input type="date" [(ngModel)]="auditStartDate">
+          <input type="date" [(ngModel)]="auditEndDate">
+          <select [(ngModel)]="auditActionFilter">
+            <option value="">All Actions</option>
+            <option value="create">Create</option>
+            <option value="update">Update</option>
+            <option value="delete">Delete</option>
+          </select>
+          <button (click)="filterAuditLogs()">Filter</button>
+        </div>
+
+        <div class="audit-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let log of filteredAuditLogs">
+                <td>{{ log.timestamp | date: 'medium' }}</td>
+                <td>{{ log.user }}</td>
+                <td>{{ log.action }}</td>
+                <td>{{ log.details }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

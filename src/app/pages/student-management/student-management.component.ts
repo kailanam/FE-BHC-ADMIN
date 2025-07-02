@@ -24,8 +24,8 @@ export class StudentManagementComponent {
   addingStudent = false;
   addStudentFormSubmitted = false;
   editStudentFormSubmitted = false;
-  editStudentData: any = {};
-  newStudentData: any = { name: '', status: 'active', department: '' };
+  editStudentData: { name: string; status: string; department: string; lastActive?: Date } = { name: '', status: 'active', department: '' };
+  newStudentData: { name: string; status: string; department: string } = { name: '', status: 'active', department: '' };
   departments: string[] = ['Science', 'Arts', 'Engineering', 'Business', 'Law'];
 
   ngOnInit() {
@@ -67,7 +67,7 @@ export class StudentManagementComponent {
     this.addStudentFormSubmitted = false;
   }
 
-  editStudent(student: any) {
+  editStudent(student: { name: string; status: string; department: string; lastActive?: Date }) {
     this.editingStudent = true;
     this.editStudentFormSubmitted = false;
     this.editStudentData = { ...student };
@@ -92,7 +92,7 @@ export class StudentManagementComponent {
     this.editStudentFormSubmitted = false;
   }
 
-  deleteStudent(student: any) {
+  deleteStudent(student: { name: string; status: string; department: string; lastActive?: Date }) {
     this.students = this.students.filter(s => s !== student);
     this.filterStudents();
   }

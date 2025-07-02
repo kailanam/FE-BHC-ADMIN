@@ -23,8 +23,8 @@ export class FacultyManagementComponent {
 
   editingUser = false;
   addingUser = false;
-  editUserData: any = {};
-  newUserData: any = { name: '', role: '', status: 'active', department: '' };
+  editUserData: { name: string; role: string; status: string; department: string; lastActive?: Date } = { name: '', role: '', status: 'active', department: '' };
+  newUserData: { name: string; role: string; status: string; department: string } = { name: '', role: '', status: 'active', department: '' };
   addUserFormSubmitted = false;
 
   ngOnInit() {
@@ -66,7 +66,7 @@ export class FacultyManagementComponent {
     this.addUserFormSubmitted = false;
   }
 
-  editUser(user: any) {
+  editUser(user: { name: string; role: string; status: string; department: string; lastActive?: Date }) {
     this.editingUser = true;
     this.editUserData = { ...user };
   }
@@ -84,7 +84,7 @@ export class FacultyManagementComponent {
     this.editingUser = false;
   }
 
-  deleteUser(user: any) {
+  deleteUser(user: { name: string; role: string; status: string; department: string; lastActive?: Date }) {
     this.users = this.users.filter(u => u !== user);
     this.filterUsers();
   }

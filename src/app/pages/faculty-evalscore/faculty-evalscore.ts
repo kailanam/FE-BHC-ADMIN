@@ -39,7 +39,6 @@ const MOCK_EVAL_SCORES_C: EvalScoreItem[] = [
   { question: 'Results of tests/assignments/requirements were returned promptly within a week.', score: 4 },
   { question: 'Instructor shows care and kindness to students.', score: 5 },
 ];
-
 @Component({
   selector: 'app-faculty-evalscore',
   standalone: true,
@@ -51,22 +50,36 @@ export class FacultyEvalscore implements OnInit {
   private route = inject(ActivatedRoute)
   private router = inject(Router);
   
+
   faculty: Faculty | undefined;
   currentDateTime = new Date();
   facultyList = MOCK_FACULTY;
+  facultySearch: string = '';
+  filteredFacultyList = this.facultyList.slice();
 
   evalScoresA = MOCK_EVAL_SCORES_A;
   evalScoresB = MOCK_EVAL_SCORES_B;
   evalScoresC = MOCK_EVAL_SCORES_C;
 
   ngOnInit(): void {
-    this.faculty = this.facultyList[0];
+    this.filterFaculty();
+    this.faculty = this.filteredFacultyList[0];
     setInterval(() => {
       this.currentDateTime = new Date();
     }, 1000);
   }
 
-  // ...existing code...
+  filterFaculty() {
+    const query = this.facultySearch.toLowerCase();
+    this.filteredFacultyList = this.facultyList.filter(f =>
+      f.name.toLowerCase().includes(query) ||
+      f.department.toLowerCase().includes(query) ||
+      f.position.toLowerCase().includes(query)
+    );
+    if (!this.filteredFacultyList.includes(this.faculty!)) {
+      this.faculty = this.filteredFacultyList[0];
+    }
+  }
 
   todolist(): void {
     this.router.navigate(['/todolist']);
@@ -79,5 +92,6 @@ export class FacultyEvalscore implements OnInit {
   selectFaculty(faculty: Faculty) {
     this.faculty = faculty;
   }
+
 
 }
